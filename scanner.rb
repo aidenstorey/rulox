@@ -169,6 +169,19 @@ class Scanner
                 while "\n" != peek && !is_at_end do
                     advance
                 end
+            elsif match("*")
+                open_count = 1
+                while open_count > 0 && !is_at_end do
+                    if peek == '/' && peek_next == '*'
+                        open_count += 1
+                    elsif peek == '*' && peek_next == '/'
+                        open_count -= 1
+                    else
+                        next advance
+                    end
+
+                    3.times { advance }
+                end
             else
                 add_token(:SLASH)
             end
