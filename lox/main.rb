@@ -1,4 +1,6 @@
 require_relative "lox"
+require_relative "expr"
+require_relative "ast_printer"
 
 def main
     if 1 < ARGV.length
